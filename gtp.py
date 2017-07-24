@@ -225,6 +225,9 @@ class Engine(object):
         else:
             raise ValueError("unknown player: {}".format(arguments))
 
+    def cmd_final_score(self, arguments):
+        return self._game.get_score()
+
 
 class MinimalGame(object):
 
@@ -262,3 +265,8 @@ class MinimalGame(object):
     def get_move(self, color):
         # pass every time. At least it's legal
         return (0, 0)
+
+    def get_score(self):
+        # Valid return types are the SGF RE options. For example:
+        # W+0.5, B+R, B+T, Draw, Void, B+Forfeit, ?
+        return "?"
