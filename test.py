@@ -98,8 +98,9 @@ class CommandsTest(unittest.TestCase):
         response = self.engine.send("6 list_commands\n")
         self.assertEqual(
             response,
-            "=6 boardsize\nclear_board\ngenmove\nknown_command\nkomi\n"
-            "list_commands\nname\nplay\nprotocol_version\nquit\nversion\n\n")
+            "=6 boardsize\nclear_board\nfinal_score\ngenmove\nknown_command\n"
+            "komi\nlist_commands\nname\nplay\nprotocol_version\nquit\n"
+            "version\n\n")
 
         response = self.engine.send("99 quit\n")
         self.assertEqual(response, "=99\n\n")
@@ -139,6 +140,9 @@ class CommandsTest(unittest.TestCase):
 
         response = self.engine.send("17 genmove orange")
         self.assertEqual(response, "?17 unknown player: orange\n\n")
+
+        response = self.engine.send("18 final_score")
+        self.assertEqual(response, "=18 ?\n\n")
 
 
 if __name__ == "__main__":
